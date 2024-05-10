@@ -15,7 +15,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   @override
   void initState() {
     initialCameraPosition = const CameraPosition(
-        zoom: 12, target: LatLng(30.786596595960322, 31.000377688642068));
+        zoom: 16, target: LatLng(30.786596595960322, 31.000377688642068));
     super.initState();
   }
 
@@ -29,6 +29,12 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   Widget build(BuildContext context) {
     return Stack(children: [
       GoogleMap(
+        // maptype in google maps
+
+        // mapType: MapType.normal,
+        // mapType: MapType.satellite,
+        // mapType: MapType.hybrid,
+
         onMapCreated: (GoogleMapController controller) {
           googleMapController = controller;
         },
