@@ -16,6 +16,8 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   void initState() {
     initialCameraPosition = const CameraPosition(
         zoom: 16, target: LatLng(30.786596595960322, 31.000377688642068));
+
+    initMapStyle();
     super.initState();
   }
 
@@ -29,22 +31,11 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   Widget build(BuildContext context) {
     return Stack(children: [
       GoogleMap(
-        // maptype in google maps
-
-        // mapType: MapType.normal,
-        // mapType: MapType.satellite,
-        // mapType: MapType.hybrid,
-
         onMapCreated: (GoogleMapController controller) {
+          // initialize google map controller
           googleMapController = controller;
+          initMapStyle();
         },
-        // cameraTargetBounds:
-        // CameraTargetBounds(
-        //   LatLngBounds(
-        //     southwest: const LatLng(30.78048403825332, 30.98951187092241),
-        //     northeast: const LatLng(30.791987715969842, 31.008116299534766),
-        //   ),
-        // ),
         initialCameraPosition: initialCameraPosition,
       ),
       Positioned(
@@ -52,25 +43,17 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
         left: 16,
         right: 16,
         child: ElevatedButton(
-          onPressed: () {
-            // for updating the camera position
-            // CameraPosition newLocation = const CameraPosition(
-            //     zoom: 11,
-            //     target: LatLng(31.19676238526783, 29.917865001858917));
-            // googleMapController.animateCamera(CameraUpdate.newCameraPosition(newLocation),
-            // );
-
-            // for updating latlng only
-            googleMapController.animateCamera(
-              CameraUpdate.newLatLng(
-                const LatLng(31.19676238526783, 29.917865001858917),
-              ),
-            );
-          },
+          onPressed: () {},
           child: const Text("Change Location"),
         ),
       )
     ]);
+  }
+
+  void initMapStyle() async {
+    var nightMapStyle = await DefaultAssetBundle.of(context)
+        .loadString('assets/map_style/night_map_style.json');
+    googleMapController.setMapStyle(nightMapStyle);
   }
 }
 
