@@ -1,46 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_map_course/Widgets/custom_google_map.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const TestingGoogleMapsWithFlutter());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class TestingGoogleMapsWithFlutter extends StatelessWidget {
+  const TestingGoogleMapsWithFlutter({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: GoogleMap(
-        initialCameraPosition: CameraPosition(
-          target: LatLng(31, 41),
-        ),
-      ),
+      home: CustomGoogleMap(),
     );
   }
 }
