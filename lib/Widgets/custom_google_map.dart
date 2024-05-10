@@ -9,15 +9,12 @@ class CustomGoogleMap extends StatefulWidget {
 }
 
 class _CustomGoogleMapState extends State<CustomGoogleMap> {
-  late CameraPosition initialCameraPosition = const CameraPosition(
-    target: LatLng(37.7749, -122.4194),
-    zoom: 10,
-  );
+  late CameraPosition initialCameraPosition;
 
   @override
   void initState() {
     initialCameraPosition = const CameraPosition(
-        target: LatLng(30.786609216923875, 31.000410728835757));
+        zoom: 20, target: LatLng(30.786596595960322, 31.000377688642068));
     super.initState();
   }
 
@@ -26,3 +23,9 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     return GoogleMap(initialCameraPosition: initialCameraPosition);
   }
 }
+
+// world view 0 --> 3
+// country view 4 --> 6
+// city view 10 --> 12
+// street view 13 --> 17
+// building view 18 --> 20
