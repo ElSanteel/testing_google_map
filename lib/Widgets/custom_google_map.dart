@@ -42,11 +42,28 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
         initialCameraPosition: initialCameraPosition,
       ),
       Positioned(
-          bottom: 16,
-          left: 16,
-          right: 16,
-          child: ElevatedButton(
-              onPressed: () {}, child: const Text("Change Location")))
+        bottom: 16,
+        left: 16,
+        right: 16,
+        child: ElevatedButton(
+          onPressed: () {
+            // for updating the camera position
+            // CameraPosition newLocation = const CameraPosition(
+            //     zoom: 11,
+            //     target: LatLng(31.19676238526783, 29.917865001858917));
+            // googleMapController.animateCamera(CameraUpdate.newCameraPosition(newLocation),
+            // );
+
+            // for updating latlng only
+            googleMapController.animateCamera(
+              CameraUpdate.newLatLng(
+                const LatLng(31.19676238526783, 29.917865001858917),
+              ),
+            );
+          },
+          child: const Text("Change Location"),
+        ),
+      )
     ]);
   }
 }
