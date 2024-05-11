@@ -73,9 +73,12 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   //   }
 
   // method to create multiple markers
-  void initMarkers() {
+  void initMarkers() async {
+    var customMarkerIcon = await BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(), 'assets/images/icons8-marker-50.png');
     var myMarkers = places
         .map((placeModel) => Marker(
+              icon: customMarkerIcon,
               markerId: MarkerId(placeModel.id.toString()),
               position: placeModel.latLng,
               // this comment is put here to see the use of infoWindow
@@ -83,6 +86,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
             ))
         .toSet();
     markers.addAll(myMarkers);
+    setState(() {});
   }
 }
 
