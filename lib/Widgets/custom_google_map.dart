@@ -36,6 +36,8 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   Widget build(BuildContext context) {
     return Stack(children: [
       GoogleMap(
+        // to hide zoom controllers
+        zoomControlsEnabled: false,
         markers: markers,
         onMapCreated: (GoogleMapController controller) {
           // initialize google map controller
