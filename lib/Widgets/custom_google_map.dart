@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:google_map_course/models/place_model.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'dart:ui' as ui;
+// import 'dart:ui' as ui;
 
 class CustomGoogleMap extends StatefulWidget {
   const CustomGoogleMap({super.key});
@@ -15,6 +15,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   late CameraPosition initialCameraPosition;
   late GoogleMapController googleMapController;
   Set<Marker> markers = {};
+  Set<Polyline> polyLines = {};
 
   @override
   void initState() {
@@ -23,6 +24,8 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
 
     // preferred to initialize markers in initMarkers method in the initState
     initMarkers();
+
+    initPolyLines();
     super.initState();
   }
 
@@ -36,6 +39,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   Widget build(BuildContext context) {
     return Stack(children: [
       GoogleMap(
+        polylines: polyLines,
         // to hide zoom controllers
         zoomControlsEnabled: false,
         markers: markers,
@@ -106,9 +110,9 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     // var customMarkerIcon = BitmapDescriptor.fromBytes(
     //     await getImageFromRawData('assets/images/icons8-marker-50.png', 70));
 
-
     // change marker icon if you will use getImageFromRawData method
-    var customMarkerIcon = await BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/images/icons8-marker-50.png');
+    var customMarkerIcon = await BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(), 'assets/images/icons8-marker-50.png');
 
     var myMarkers = places
         .map((placeModel) => Marker(
@@ -121,6 +125,16 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
         .toSet();
     markers.addAll(myMarkers);
     setState(() {});
+  }
+
+  void initPolyLines() {
+    Polyline polyLine = const Polyline(polylineId: PolylineId('1'), points: [
+      LatLng(30.781647165030805, 30.99564275849909),
+      LatLng(30.78697008694028, 31.00022235705082),
+      LatLng(30.78459591541297, 31.004907874672455),
+      LatLng(30.780135938641447, 31.003634585857398)
+    ]);
+    polyLines.add(polyLine);
   }
 }
 
