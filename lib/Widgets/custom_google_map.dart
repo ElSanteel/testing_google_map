@@ -20,7 +20,11 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   @override
   void initState() {
     initialCameraPosition = const CameraPosition(
-        zoom: 16, target: LatLng(30.786596595960322, 31.000377688642068));
+      // this zoom is for trying geodesic property
+      // zoom: 1,
+      zoom: 16,
+      target: LatLng(30.786596595960322, 31.000377688642068),
+    );
 
     // preferred to initialize markers in initMarkers method in the initState
     initMarkers();
@@ -51,15 +55,15 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
         },
         initialCameraPosition: initialCameraPosition,
       ),
-      Positioned(
-        bottom: 16,
-        left: 16,
-        right: 16,
-        child: ElevatedButton(
-          onPressed: () {},
-          child: const Text("Change Location"),
-        ),
-      )
+      // Positioned(
+      //   bottom: 16,
+      //   left: 16,
+      //   right: 16,
+      //   child: ElevatedButton(
+      //     onPressed: () {},
+      //     child: const Text("Change Location"),
+      //   ),
+      // )
     ]);
   }
 
@@ -128,13 +132,45 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   }
 
   void initPolyLines() {
-    Polyline polyLine = const Polyline(polylineId: PolylineId('1'), points: [
-      LatLng(30.781647165030805, 30.99564275849909),
-      LatLng(30.78697008694028, 31.00022235705082),
-      LatLng(30.78459591541297, 31.004907874672455),
-      LatLng(30.780135938641447, 31.003634585857398)
-    ]);
+    Polyline polyLine = Polyline(
+      polylineId: const PolylineId('1'),
+      points: const [
+        LatLng(30.781647165030805, 30.99564275849909),
+        LatLng(30.78697008694028, 31.00022235705082),
+        LatLng(30.78459591541297, 31.004907874672455),
+        LatLng(30.780135938641447, 31.003634585857398),
+
+        // these points to try geodesic property
+        // LatLng(-28.718313313545117, 22.86984894027408),
+        // LatLng(81.73748455120459, 145.67510849968693)
+      ],
+      color: Colors.red,
+      startCap: Cap.roundCap,
+      width: 5,
+      zIndex: 2,
+      patterns: [PatternItem.dot, PatternItem.gap(10)],
+      geodesic: false,
+    );
+
+    Polyline polyLine2 = Polyline(
+      polylineId: const PolylineId('2'),
+      points: const [
+        LatLng(30.785253447644422, 31.000195661080703),
+        LatLng(30.78871166158042, 31.00148987292484)
+
+        // these points to try geodesic property
+        // LatLng(-28.718313313545117, 22.86984894027408),
+        // LatLng(81.73748455120459, 145.67510849968693)
+      ],
+      color: Colors.black,
+      startCap: Cap.roundCap,
+      width: 5,
+      zIndex: 1,
+      patterns: [PatternItem.dot, PatternItem.gap(10)],
+      geodesic: false,
+    );
     polyLines.add(polyLine);
+    polyLines.add(polyLine2);
   }
 }
 
