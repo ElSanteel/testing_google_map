@@ -78,6 +78,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
         .map((placeModel) => Marker(
               markerId: MarkerId(placeModel.id.toString()),
               position: placeModel.latLng,
+              // this comment is put here to see the use of infoWindow
               infoWindow: InfoWindow(title: placeModel.name),
             ))
         .toSet();
