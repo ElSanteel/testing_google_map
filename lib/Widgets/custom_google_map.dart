@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_map_course/models/place_model.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'dart:ui' as ui;
 
 class CustomGoogleMap extends StatefulWidget {
   const CustomGoogleMap({super.key});
@@ -72,10 +74,40 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   //     setState(() {});
   //   }
 
+  // // method change size of marker icon
+  // Future<Uint8List> getImageFromRawData(String image, double width) async {
+  //   // covert image to raw data format (Tharwat Explain this in the video)
+  //   // Load the image data from the specified asset (a marker icon in this case) into memory for further use.
+  //   var imageData = await rootBundle.load('assets/images/icons8-marker-50.png');
+
+  //   // change the width of the image and return it as a byte data
+  //   // Instantiate an image codec from the image data buffer, specifying the target width. This is used to decode the image data into a frame.
+  //   var imageCodec = await ui.instantiateImageCodec(
+  //       imageData.buffer.asUint8List(),
+  //       targetWidth: width.round());
+
+  //   // retrieve image frame information (Tharwat Explain this in the video)
+  //   // Retrieve the next frame from the image codec. This is used to get the decoded image data for rendering.
+  //   var imageFrameInfo = await imageCodec.getNextFrame();
+
+  //   // convert image to byte data but with modified properties
+  //   var imageByteData =
+  //       await imageFrameInfo.image.toByteData(format: ui.ImageByteFormat.png);
+
+  //   return imageByteData!.buffer.asUint8List();
+  // }
+
   // method to create multiple markers
   void initMarkers() async {
-    var customMarkerIcon = await BitmapDescriptor.fromAssetImage(
-        const ImageConfiguration(), 'assets/images/icons8-marker-50.png');
+    // change marker icon if you will use getImageFromRawData method
+
+    // var customMarkerIcon = BitmapDescriptor.fromBytes(
+    //     await getImageFromRawData('assets/images/icons8-marker-50.png', 70));
+
+
+    // change marker icon if you will use getImageFromRawData method
+    var customMarkerIcon = await BitmapDescriptor.fromAssetImage(const ImageConfiguration(), 'assets/images/icons8-marker-50.png');
+
     var myMarkers = places
         .map((placeModel) => Marker(
               icon: customMarkerIcon,
