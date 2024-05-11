@@ -16,14 +16,15 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   late GoogleMapController googleMapController;
   // Set<Marker> markers = {};
   // Set<Polyline> polyLines = {};
-  Set<Polygon> polygons = {};
+  // Set<Polygon> polygons = {};
+  Set<Circle> circles = {};
 
   @override
   void initState() {
     initialCameraPosition = const CameraPosition(
       // this zoom is for trying geodesic property
       // zoom: 1,
-      zoom: 4,
+      zoom: 10,
       target: LatLng(30.786596595960322, 31.000377688642068),
     );
 
@@ -32,7 +33,9 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
 
     // initPolyLines();
 
-    initPolygons();
+    // initPolygons();
+
+    initCircles();
     super.initState();
   }
 
@@ -50,7 +53,8 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
         zoomControlsEnabled: false,
         // markers: markers,
         // polylines: polyLines,
-        polygons: polygons,
+        // polygons: polygons,
+        circles: circles,
 
         onMapCreated: (GoogleMapController controller) {
           // initialize google map controller
@@ -90,6 +94,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   //   }
 
   // method change size of marker icon
+
   // Future<Uint8List> getImageFromRawData(String image, double width) async {
   // covert image to raw data format (Tharwat Explain this in the video)
   // Load the image data from the specified asset (a marker icon in this case) into memory for further use.
@@ -113,6 +118,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   // }
 
   // method to create multiple markers
+
   // void initMarkers() async {
   // change marker icon if you will use getImageFromRawData method
 
@@ -136,6 +142,8 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   //   setState(() {});
   // }
 
+  // method to use polylines
+
   // void initPolyLines() {
   //   Polyline polyLine = Polyline(
   //     polylineId: const PolylineId('1'),
@@ -145,9 +153,9 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   //       LatLng(30.78459591541297, 31.004907874672455),
   //       LatLng(30.780135938641447, 31.003634585857398),
 
-  //       // these points to try geodesic property
-  //       // LatLng(-28.718313313545117, 22.86984894027408),
-  //       // LatLng(81.73748455120459, 145.67510849968693)
+  // these points to try geodesic property
+  // LatLng(-28.718313313545117, 22.86984894027408),
+  // LatLng(81.73748455120459, 145.67510849968693)
   //     ],
   //     color: Colors.red,
   //     startCap: Cap.roundCap,
@@ -178,26 +186,39 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   //   polyLines.add(polyLine2);
   // }
 
-  void initPolygons() {
-    var polygon = Polygon(
-        polygonId: const PolygonId('1'),
-        points: const [
-          LatLng(31.66707692557948, 25.08956741360882),
-          LatLng(22.077005231704607, 25.00879213543131),
-          LatLng(22.052052095922043, 36.80198274934764),
-          LatLng(30.049219069687506, 32.54781809866549)
-        ],
-        fillColor: Colors.black.withOpacity(0.5),
-        strokeWidth: 3,
-        holes: const [
-          [
-            LatLng(30.031194754428565, 31.259648332163763),
-            LatLng(31.20301791724987, 29.95886713833016),
-            LatLng(28.895913350680814, 27.285499533877548),
-            LatLng(29.752279573851133, 33.924922788616406),
-          ]
-        ]);
-    polygons.add(polygon);
+  // method to use polygons
+
+  // void initPolygons() {
+  //   var polygon = Polygon(
+  //       polygonId: const PolygonId('1'),
+  //       points: const [
+  //         LatLng(31.66707692557948, 25.08956741360882),
+  //         LatLng(22.077005231704607, 25.00879213543131),
+  //         LatLng(22.052052095922043, 36.80198274934764),
+  //         LatLng(30.049219069687506, 32.54781809866549)
+  //       ],
+  //       fillColor: Colors.black.withOpacity(0.5),
+  //       strokeWidth: 3,
+  //       holes: const [
+  //         [
+  //           LatLng(30.031194754428565, 31.259648332163763),
+  //           LatLng(31.20301791724987, 29.95886713833016),
+  //           LatLng(28.895913350680814, 27.285499533877548),
+  //           LatLng(29.752279573851133, 33.924922788616406),
+  //         ]
+  //       ]);
+  //   polygons.add(polygon);
+  // }
+
+  void initCircles() {
+    Circle koshryAbuTarekServiceCircle =  Circle(
+      circleId: const CircleId('1'),
+      center: const LatLng(30.05040192011108, 31.23771238126698),
+      radius: 10000,
+      fillColor: Colors.black.withOpacity(0.5),
+    );
+
+    circles.add(koshryAbuTarekServiceCircle);
   }
 }
 
