@@ -17,6 +17,9 @@ class PlaceModel {
 // بنك فيصل فرع طنطا
 // 30.78617166330643, 31.00110709684075
 // فندق جرين هاوس
+
+
+// this comment is put here to notice that id and position should have unique values
 List<PlaceModel> places = [
   PlaceModel(
     id: 1,
