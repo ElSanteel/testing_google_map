@@ -23,7 +23,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     initialCameraPosition = const CameraPosition(
       // this zoom is for trying geodesic property
       // zoom: 1,
-      zoom: 16,
+      zoom: 4,
       target: LatLng(30.786596595960322, 31.000377688642068),
     );
 
@@ -179,15 +179,24 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   // }
 
   void initPolygons() {
-    var polygon =  Polygon(
-      polygonId: const PolygonId('1'),
-      points: const [
-        LatLng(30.788554991197426, 30.993810921834765),
-        LatLng(30.787964254798723, 31.012755694844166),
-        LatLng(30.77895507507975, 30.999724716676177)
-      ],
-      fillColor: Colors.black.withOpacity(0.5),
-    );
+    var polygon = Polygon(
+        polygonId: const PolygonId('1'),
+        points: const [
+          LatLng(31.66707692557948, 25.08956741360882),
+          LatLng(22.077005231704607, 25.00879213543131),
+          LatLng(22.052052095922043, 36.80198274934764),
+          LatLng(30.049219069687506, 32.54781809866549)
+        ],
+        fillColor: Colors.black.withOpacity(0.5),
+        strokeWidth: 3,
+        holes: const [
+          [
+            LatLng(30.031194754428565, 31.259648332163763),
+            LatLng(31.20301791724987, 29.95886713833016),
+            LatLng(28.895913350680814, 27.285499533877548),
+            LatLng(29.752279573851133, 33.924922788616406),
+          ]
+        ]);
     polygons.add(polygon);
   }
 }
